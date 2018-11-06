@@ -1,31 +1,40 @@
-## This file provide the arguments provided to the VM at startup
-## You can find a full list of flags and their behaviours at
-## http://erlang.org/doc/man/erl.html
+## Add custom options here
 
-## Name of the node
--name <%= release_name %>@127.0.0.1
+## Distributed Erlang Options
+##  The cookie needs to be configured prior to vm boot for
+##  for read only filesystem.
 
-## Cookie for distributed erlang
+# -name test2@0.0.0.0
 -setcookie training
 
-## Heartbeat management; auto-restarts VM if it dies or becomes unresponsive
-## (Disabled by default..use with caution!)
-##-heart
+## Use Ctrl-C to interrupt the current shell rather than invoking the emulator's
+## break handler and possibly exiting the VM.
++Bc
 
-## Enable kernel poll and a few async threads
-##+K true
-##+A 5
-## For OTP21+, the +A flag is not used anymore,
-## +SDio replace it to use dirty schedulers
-##+SDio 5
+## Load code at system startup
+## See http://erlang.org/doc/system_principles/system_principles.html#code-loading-strategy
+-mode embedded
 
-## Increase number of concurrent ports/sockets
-##-env ERL_MAX_PORTS 4096
+## Save the shell history between reboots
+## See http://erlang.org/doc/man/kernel_app.html for additional options
+-kernel shell_history enabled
 
-## Tweak GC to run more often
-##-env ERL_FULLSWEEP_AFTER 10
+## Enable heartbeat monitoring of the Erlang runtime system
+-heart -env HEART_BEAT_TIMEOUT 30
 
-# Enable SMP automatically based on availability
-# On OTP21+, this is not needed anymore.
--smp auto
+## Start the Elixir shell
+
+-noshell
+-user Elixir.IEx.CLI
+
+## Enable colors in the shell
+-elixir ansi_enabled true
+
+## Options added after -extra are interpreted as plain arguments and can be
+## retrieved using :init.get_plain_arguments(). Options before the "--" are
+## interpreted by Elixir and anything afterwards is left around for other IEx
+## and user applications.
+-extra --no-halt
+--
+--dot-iex /etc/iex.exs
 
