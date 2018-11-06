@@ -99,3 +99,4 @@ tags
 !.vscode/extensions.json
 
 # End of https://www.gitignore.io/api/visualstudiocode,elixir,vim,emacs
+.elixir_ls
