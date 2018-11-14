@@ -12,7 +12,10 @@ defmodule NervesGame do
       :world
 
   """
+  require Logger
+
   def hello do
+    Logger.debug "Hello Nerves"
     :world
   end
 end
