@@ -51,7 +51,8 @@ defmodule NervesGame.MixProject do
   defp deps(target) do
     [
       {:nerves_runtime, "~> 0.6"},
-      {:nerves_init_gadget, "~> 0.4"}
+      {:nerves_init_gadget, "~> 0.4"},
+      {:circuits_i2c, "~> 0.1"}
     ] ++ system(target)
   end
 
