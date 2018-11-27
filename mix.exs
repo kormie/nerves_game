@@ -52,7 +52,8 @@ defmodule NervesGame.MixProject do
     [
       {:nerves_runtime, "~> 0.6"},
       {:nerves_init_gadget, "~> 0.4"},
-      {:circuits_i2c, "~> 0.1"}
+      {:led_shim, github: "mobileoverlord/led_shim"}
+      # {:circuits_i2c, "~> 0.1"}
     ] ++ system(target)
   end
 
